@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html  lang="en" style="height:100%;">
+<head>
+    <title>登录 - SSS - sponsorship赞助活动交易平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width,initial-scale=0.4,user-scalable=yes"/>
+    <meta name="distribution" content="global">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="SSS">
+    <meta name="publisher" content="SSS">
+    <meta name="rating" content="general">
+    <meta name="copyright" content="华南理工大学软件学院">
+    <meta name="webcrawlers" content="all">
+    <meta name="company" content="华南理工大学软件学院">
+    <meta name="subject" content="SSS 赞助-活动多对多">
+    <meta name="abstract" content="赞助活动交易平台">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/mylogin.js" type="text/javascript"></script>
+    <link href="../css/login.css" rel="stylesheet" type="text/css">
+    <link rel="SHORTCUT ICON" href="../images/sss.ico">
+    
+
+    
+
+
+    <script type="text/javascript">
+        var uvOptions = {};
+        var _atrk_opts = { atrk_acct: "GgKTe1aoiI00WL", domain: "yizanzhu.com", dynamic: true };
+
+        function validateEmail(email) {
+            if (email == null || $.trim(email) == "") return false;
+            var pattern = /^([A-Za-z0-9]+)(([A-Za-z0-9]+)|(_+)|(\-+)|(\.+)|(\++))*@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$/i;
+            return pattern.test(email);
+        }
+        function validatePhone(phone) {
+            if (phone == null || $.trim(phone) == "") return false;
+            var pattern = /(^((0[1,2]{1}\d{1}-?\d{8})|(0[3-9]{1}\d{2}-?\d{7,8}))$)|(^(0|86|17951)?(13[0-9]|15[0-35-9]|17[0678]|18[0-9]|14[57])[0-9]{8}$)/;
+            return pattern.test(phone);
+        }
+        Date.prototype.format = function (format) { //author: meizz
+            var o = {
+                "M+": this.getMonth() + 1, //month
+                "d+": this.getDate(),    //day
+                "h+": this.getHours(),   //hour
+                "m+": this.getMinutes(), //minute
+                "s+": this.getSeconds(), //second
+                "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
+                "S": this.getMilliseconds() //millisecond
+            }
+            if (/(y+)/.test(format)) format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o) if (new RegExp("(" + k + ")").test(format))
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+            return format;
+        }
+    </script>
+
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+<div class="container sign-in" >
+    <a class="logo pull-left" href="http://yangyuqing.vipgz1.idcfengye.com/test/UML-project/UML-project/index.html">
+        <img src="../images/tplogo.png" alt="赞助"></a>
+    <div class="sign-hd">
+    </div>
+    <div class="sign-bd">
+        <div class="title">
+            
+            管理员登录
+        </div>
+        <div class="login-form">
+            <h4>
+                管理员帐号登录
+            </h4>
+            <form id="login_form" action="/login" method="POST">
+                <input value="0" name="LoginType" id="login_tab_type" type="hidden">
+                <input name="ex_country" value="" type="hidden">
+                <input name="ex_province" value="" type="hidden">
+                <input name="ex_city" value="" type="hidden">
+                <input name="returnUrl" value="" type="hidden">
+
+                <div class="tab-pane fade in active" id="common_longin_tab">
+                    <div class="form-group">
+                        <label for="username" class="icon-user"></label><input id="username" class="form-control" name="username" placeholder="管理员帐号" autocomplete="off" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="icon-password"></label><input id="password" placeholder="管理员密码" class="form-control" name="password" autocomplete="off" type="password">
+                    </div>
+
+
+                    <input value="False" name="UseGeetest" type="hidden">
+                    
+                    <div class="checkbox-inline">
+                    </div>
+                    <button class="btn btn-primary btn-block " type="button" id="submitBtn" onclick="submitForm(); return false;">登录</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="alert" style="display:none;">
+            <div class="alert alert-error">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="jquery_ajax_loading" class="layer-warning modal" style="margin-top:300px;display:none; overflow-y:auto;">
+    <div class="modal-dialog" style="width:450px;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p><span class="icon-warning"></span> 页面正在加载中，请耐心等待...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script language=javascript>
+    //提交登录
+    function submitForm(){
+        if($.trim($("#username").val())==''){
+            $("#alert").show();
+            $('#alert .alert').html("对不起，管理员账号不可为空，请填写。");
+            $("#username").focus();
+            return false;
+        }
+        if($.trim($("#password").val()).length<6){
+            $("#alert").show();
+            $('#alert .alert').html("对不起，密码不正确，请重试。");
+            $("#password").focus();
+            return false;
+        }
+        //验证发送ajax
+        var returnUrl = 'index.html';
+        var username = $.trim($("#username").val());
+        var password = $.trim($('#password').val());
+        $.ajax({
+            type:"POST",
+            url:"/bbt/api/login",
+            data:{account:username,pwd:password},
+            dataType:"json",
+            beforeSend: function() {
+                $("#submitBtn").attr('disabled',true).text('登录中...');
+            },
+            success:function(objsnd){
+                //创建成功
+                if (objsnd.state == 0){
+                    // 跳转到管理页面
+                    //var adminid = objsnd.adminid;
+                    window.location.href = ('main.html');
+                    $("#alert").show();
+                    $('#alert .alert').html("未知错误");
+                    $("#submitBtn").attr('disabled',false).html('登录');
+                    
+                }else if(objsnd.result == 101){
+                    $("#alert").show();
+                    $('#alert .alert').html("对不起，账户不存在，请重试。");
+                    $("#submitBtn").attr('disabled',false).html('登录');
+                }else if(objsnd.result == 102){
+                    $("#alert").show();
+                    $('#alert .alert').html("对不起，密码错误，请重试。");
+                    $("#submitBtn").attr('disabled',false).html('登录');
+                }else if(objsnd.result == 103){
+                    $("#alert").show();
+                    $('#alert .alert').html("对不起，数据格式错误，请重试。");
+                    $("#submitBtn").attr('disabled',false).html('登录');
+                }else if(objsnd.result == 199){
+                    $("#alert").show();
+                    $('#alert .alert').html("对不起，HTTP请求错误，请重试。");
+                    $("#submitBtn").attr('disabled',false).html('登录');
+                }else{
+                    $("#alert").show();
+                    $('#alert .alert').html("服务器连接失败");
+                    $("#submitBtn").attr('disabled',false).html('登录');
+                }
+            },
+            complete: function(){
+                // 				alert('complete');
+            },
+            error: function(xml,msg){
+                //请求出错处理
+                $("#alert").show();
+                $('#alert .alert').html("请求出错，请重试。");
+                alert(msg);
+                $("#submitBtn").attr('disabled',false).html('登录');
+                return false;
+            }
+        });
+
+        return false;
+    }
+
+
+</script>
+
+
+
+
+</body></html>

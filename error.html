@@ -1,0 +1,62 @@
+<html>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "微软雅黑";
+      color: #34495e;
+    }
+    .errorpPage-wrap,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    .errorpPage-box {
+      width: 800px;
+      height: 500px;
+      position: absolute;
+      top: 50%;
+      margin-top: -200px;
+      left: 50%;
+      margin-left: -400px;
+    }
+    .errorpPage-tip h3 {
+      font-size: 24px;
+      font-weight: 300;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .errorpPage-tip p {
+      margin: 20px 0;
+    }
+    .errorpPage-operate a {
+      margin-left: 10px;
+      color: #06f;
+      text-decoration: none;
+    }
+    .errorpPage-operate a:first-child {
+      margin-left: 0 !important;
+    }
+    .errorpPage-img,
+    .errorpPage-tip,
+    .errorpPage-operate {
+      text-align: center;
+    }
+  </style>
+  <div class="errorpPage-wrap">
+    <div class="errorpPage-box">
+      <div class="errorpPage-img">
+        <img src="./admin/404.jpg" width="50%" height="60%" />
+      </div>
+
+      <div class="errorpPage-tip"><h3>页面丢失了....</h3></div>
+
+      <div class="errorpPage-operate">
+        <a
+          href="javascript:window.opener=null;window.open('','_self');window.close();"
+          >关闭页面</a
+        >
+      </div>
+    </div>
+  </div>
+</html>

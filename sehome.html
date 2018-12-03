@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>管理页面</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta name="viewport" content="width=960, initial-scale=1.0">
+	<meta name="distribution" content="global">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set render engine for 360 browser -->
+  	<meta name="renderer" content="webkit">
+	<link rel="SHORTCUT ICON" href="/static/admin/images/sss.ico">
+	<link href="/static/admin/css/login.css" rel="stylesheet" type="text/css">
+	<link href="/static/admin/css/index.css" rel="stylesheet" type="text/css">
+	<link href="/static/admin/css/event-list.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<input id="adminid" type="hidden" value="">
+    <div class="left-aside">
+    	<ul class="left-fun-list">
+    		<li class="left-fun-item">
+    			<a class="left-fun" id="check-info">
+    				查看用户信息
+    			</a>
+    		</li>
+    		<li class="left-fun-item">
+    			<a class="left-fun" id="batch-register">
+    				批量注册
+    			</a>
+    		</li>
+    		<li class="left-fun-item">
+    			<a class="left-fun" id="hack-info">
+    				修改信息
+    			</a>
+    		</li>
+    		<li class="left-fun-item">
+    			<a class="left-fun" id="broadcast-block">
+    				广播
+    			</a>
+    		</li>
+    	</ul>
+    </div>
+    <div class="main">
+    	<div id="check-info-block" class="main-item">
+    		<button id="search-confirm">ok</button>
+    		<input type="text" id="search-stuid" placeholder="搜索学号">
+    		<table width="400" border="1" class="table" id="check-info-table">
+                <tr>
+                    <th align="left">学号</th>
+                    <th align="left">姓名</th>
+                    <th align="left">性别</th>
+                    <th align="left">部门</th>
+                    <th align="left">职位</th>
+                    <th align="left">修改</th>
+                </tr>
+
+            </table>
+            <div class="page_footer">
+    		    <input type="hidden" id="footer">
+    		    <ul class="footer" id="check-info-page-footer">
+    		    	<li class="page" id="check-info-page">
+            		    1
+            	    </li>
+    		    </ul>
+    	    </div>
+            <!--<ul class="page-footer" id="check-info-page-footer">
+            	<li class="page" id="check-info-page">
+            		1
+            	</li>
+            </ul>-->
+    	</div>
+    	<div id="batch-register-block" class="main-item">
+    		批量注册
+    	</div>
+        <div id="hack-info-block" class="main-item">
+        	<div id = "hack-container">
+        		<button id="hack-confirm">ok</button>
+    		    <input type="text" id="hack-stuid" placeholder="输入要修改的学号">
+        	</div>
+        	<div id = "hack-main">
+        		<p class="hackp">修改前</p>
+        		<table border="1" id="before-hack" class="table">
+                    <tr>
+                        <td align="left">学号</td>
+                        <td align="left" id="before-hack-stuid"> </td>
+                    </tr>
+                    <tr>
+                        <td align="left">姓名</td>
+                        <td align="left" id="before-hack-name"> </td>
+                    </tr>
+                    <tr>
+                        <td align="left">性别</td>
+                        <td align="left" id="before-hack-gender"> </td>
+                    </tr>
+                    <tr>
+                        <td align="left">部门</td>
+                        <td align="left" id="before-hack-depart"> </td>
+                    </tr>
+                    <tr>
+                        <td align="left">职位</td>
+                        <td align="left" id="before-hack-position"> </td>
+                    </tr>
+        		</table>
+        		<p class="hackp">修改后</p>
+        		<table border="1" id="after-hack" class="table">
+        			<tr>
+                        <td align="left">学号</td>
+                        <td align="left">不能变更，若需改动请删除后再添加</td>
+                    </tr>
+                    <tr>
+                        <td align="left">姓名</td>
+                        <td align="left"><input type="text" id="after-hack-name"></td>
+                    </tr>
+                    <tr>
+                        <td align="left">性别</td>
+                        <td align="left">性别由用户变更</td>
+                    </tr>
+                    <tr>
+                        <td align="left">部门</td>
+                        <td align="left"><input type="text" id="after-hack-depart"></td>
+                    </tr>
+                    <tr>
+                        <td align="left">职位</td>
+                        <td align="left"><input type="text" id="after-hack-position"></td>
+                    </tr>
+                    <tr>
+                        <td align="left">密码</td>
+                        <td align="left"><input type="text" id="after-hack-password"></td>
+                    </tr>
+        		</table>
+        		<button id="submit-hack">
+        			提交修改
+        		</button>
+        	</div>
+        </div>
+        <div id="broadcast-block" class="main-item">
+        	广播
+        </div>
+    </div>
+    <div id="jquery_ajax_loading" class="layer-warning modal" style="margin-top:300px;display:none; overflow-y:auto;">
+        <div class="modal-dialog" style="width:450px;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p><span class="icon-warning"></span> 页面正在加载中，请耐心等待...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/admin/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/static/admin/js/getUrlParam.js"></script>
+    <script type="text/javascript" src="/static/admin/js/index.js"></script>
+</body>
+</html>
